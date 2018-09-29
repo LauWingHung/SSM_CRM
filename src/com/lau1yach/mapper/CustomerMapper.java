@@ -20,4 +20,16 @@ public interface CustomerMapper {
 //    根据查询条件,查询总记录数
 
     Integer getCountByQueryVo(QueryVo vo);
+
+//    根据id查询用户信息
+
+    Customer getCustomerById(Integer id);
+
+//    更新用户信息
+
+    void updateCustomer(Customer customer);
+
+//    删除用户信息
+
+    void deleteCustomer(Integer id);
 }

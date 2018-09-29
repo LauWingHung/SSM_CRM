@@ -37,5 +37,20 @@ public class CustomerServiceImpl implements CustomerService {
         return page;
     }
 
+    @Override
+    public Customer getCustomerById(Integer id) {
+        return customerMapper.getCustomerById(id);
+    }
+
+    @Override
+    public void updateCustomer(Customer customer) {
+        customerMapper.updateCustomer(customer);
+    }
+
+    @Override
+    public void deleteCustomer(Integer id) {
+        customerMapper.deleteCustomer(id);
+    }
+
 
 }

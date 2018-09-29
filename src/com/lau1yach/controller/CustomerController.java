@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
 
@@ -44,6 +45,42 @@ public class CustomerController {
         Page<Customer> page = customerService.getCustomerByQueryVo(vo);
 //        设置分页数据返回
         model.addAttribute("page",page);
+//        返回查询条件
+        model.addAttribute("vo",vo);
+
         return "customer";
+    }
+
+    @RequestMapping("edit")
+    @ResponseBody
+    public Customer edit(Integer id){
+        Customer customer =customerService.getCustomerById(id);
+        return customer;
+    }
+
+    @RequestMapping("update")
+    @ResponseBody
+    public String update(Customer customer){
+        String msg ="1";
+        try {
+            customerService.updateCustomer(customer);
+            msg="0";
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return msg;
+    }
+
+    @RequestMapping("delete")
+    @ResponseBody
+    public String delete(Integer id){
+        String msg ="1";
+        try {
+            customerService.deleteCustomer(id);
+            msg = "0";
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return msg;
     }
 }
